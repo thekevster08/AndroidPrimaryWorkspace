@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <TextView        
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:text="@string/logo_label" />
+    
+    <Button
+        android:id="@+id/startButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/startButton_label"
+        android:onClick="startClick"
+        />
+    
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:orientation="horizontal">
+	
+	    <TextView
+	        android:layout_weight="1"
+	        android:layout_width="0dp"	  
+	        android:layout_height="wrap_content"	              
+	        android:text="@string/time_label" />
+	    
+	    <Chronometer
+	        android:id="@+id/chronometer"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentTop="true"
+	        android:layout_centerHorizontal="true"
+	        android:format="@string/chronometer_initial_format"
+	        android:paddingBottom="30dip"
+	        android:paddingTop="30dip" />
+
+	</LinearLayout>
+	
+    <LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" 
+	    android:orientation="horizontal">
+		 <TextView
+	        android:layout_weight="1"
+	        android:layout_width="0dp"	  
+	        android:layout_height="wrap_content"	              
+	        android:text="@string/earned_label" />
+		 
+	    <TextView
+	        android:id="@+id/amountEarned"
+	        android:layout_weight="1"
+	        android:layout_width="0dp"	  
+	        android:layout_height="wrap_content"	           
+	        android:text="@string/initialValue" />
+
+	</LinearLayout>
+	
+    <Button        
+        android:id="@+id/stopButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:text="@string/finishedButton_label" 
+        android:onClick="stopClick"/>
+
+</LinearLayout>
