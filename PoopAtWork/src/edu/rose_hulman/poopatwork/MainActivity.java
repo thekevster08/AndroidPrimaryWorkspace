@@ -1,12 +1,16 @@
 package edu.rose_hulman.poopatwork;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,12 +23,15 @@ public class MainActivity extends Activity {
 	Button startButton, stopButton;
 	Chronometer mChronometer;
 	TextView amountEarned;
-	SharedPreferences mSharedPref;
+	
+	SharedPreferences myPrefs;
+	
 	SharedPreferences.Editor mEditor;
 	double salary;
 	double earned;
-	int secondsElapsed;
+	double secondsElapsed;
 	NumberFormat baseFormat;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +48,12 @@ public class MainActivity extends Activity {
 		
 		amountEarned = (TextView) findViewById(R.id.amountEarned);
 		
-		salary = 30.00;
+		myPrefs = getSharedPreferences("myPrefs", 0);
+		salary = myPrefs.getInt("salary", 0);
 		earned = 0;
 		secondsElapsed = 0;
 		
-		baseFormat = NumberFormat.getCurrencyInstance();
+		baseFormat = NumberFormat.getCurrencyInstance(Locale.US);
 	}
 
 	@Override
@@ -63,6 +71,7 @@ public class MainActivity extends Activity {
 	
 	View.OnClickListener mStartListener = new OnClickListener(){
 		public void onClick (View v){
+			salary = myPrefs.getInt("salary", 0);
 			mChronometer.setBase(SystemClock.elapsedRealtime());
 			mChronometer.start();
 		}
@@ -72,10 +81,25 @@ public class MainActivity extends Activity {
 		@Override
 		public void onChronometerTick(Chronometer mChronometer) {
 			secondsElapsed ++;
-			earned = (secondsElapsed * (salary/60/60));
-			
-			amountEarned.setText(baseFormat.format(Double.toString(earned)));
+			earned = (secondsElapsed * salary/(2080*60*60));
+		//	amountEarned.setText(Integer.toString(salary));
+			amountEarned.setText(baseFormat.format(earned));
 		}
 	};
+	
+	 public void openSettings(){
+	    	Intent intent = new Intent(this, SettingsActivity.class);
+	    	startActivity(intent);
+	    }
+	 @Override
+	    public boolean onOptionsItemSelected(MenuItem item){
+	    	switch(item.getItemId()){
+	    	case R.id.action_settings:
+	    		openSettings();
+	    		return true;
+	    	default:
+	    		return super.onOptionsItemSelected(item);
+	    	}
+	    }
 
 }
