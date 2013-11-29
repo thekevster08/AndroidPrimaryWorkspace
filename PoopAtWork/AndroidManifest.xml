@@ -26,6 +26,10 @@
             android:name="edu.rose_hulman.poopatwork.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name="edu.rose_hulman.poopatwork.PoopHistoryActivity"
+            android:label="@string/title_activity_poop_history" >
+        </activity>
     </application>
 
 </manifest>
