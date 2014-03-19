@@ -20,5 +20,6 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_poop_history">PoopHistoryActivity</string>
+    <string name="title_activity_poop_edit">PoopEdit</string>
 
 </resources>

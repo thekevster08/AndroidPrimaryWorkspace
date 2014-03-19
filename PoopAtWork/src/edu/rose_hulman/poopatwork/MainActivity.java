@@ -51,7 +51,7 @@ public class MainActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.poops_list);
 		
 		mChronometer = (Chronometer) findViewById(R.id.chronometer);
 		startButton = (Button) findViewById(R.id.startButton);

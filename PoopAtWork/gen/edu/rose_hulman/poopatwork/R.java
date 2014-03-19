@@ -35,18 +35,17 @@ public final class R {
         public static final int text1=0x7f080006;
     }
     public static final class layout {
-        public static final int activity_history=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_poop_history=0x7f030002;
-        public static final int activity_settings=0x7f030003;
-        public static final int activity_wagecalculator=0x7f030004;
-        public static final int poops_list=0x7f030005;
-        public static final int poops_row=0x7f030006;
+        public static final int activity_main=0x7f030000;
+        public static final int activity_settings=0x7f030001;
+        public static final int poop_edit=0x7f030002;
+        public static final int poops_list=0x7f030003;
+        public static final int poops_row=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f070000;
-        public static final int poop_history=0x7f070001;
-        public static final int settings=0x7f070002;
+        public static final int poop_edit=0x7f070001;
+        public static final int poop_history=0x7f070002;
+        public static final int settings=0x7f070003;
     }
     public static final class string {
         public static final int action_history=0x7f050003;
@@ -64,6 +63,7 @@ public final class R {
         public static final int save_label=0x7f05000b;
         public static final int startButton_label=0x7f050005;
         public static final int time_label=0x7f050006;
+        public static final int title_activity_poop_edit=0x7f050013;
         public static final int title_activity_poop_history=0x7f050012;
         public static final int title_activity_settings=0x7f050010;
         public static final int weeklyHours_label=0x7f05000d;

@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class PoopsDbAdapter {
-	  private long id;
 	  public static final String KEY_DATE = "date";
 	  public static final String KEY_TIMESTART = "timeStart";
 	  public static final String KEY_TIMEEND = "timeEnd";
@@ -19,7 +18,6 @@ public class PoopsDbAdapter {
 	  public static final String KEY_ROWID = "_id";
 	  
 	  private static final String TAG = "PoopsDbAdapter";
-
 	  
 	  private DatabaseHelper mDbHelper;
 	  private SQLiteDatabase mDb;

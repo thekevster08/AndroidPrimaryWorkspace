@@ -30,6 +30,10 @@
             android:name="edu.rose_hulman.poopatwork.PoopHistoryActivity"
             android:label="@string/title_activity_poop_history" >
         </activity>
+        <activity
+            android:name="edu.rose_hulman.poopatwork.PoopEdit"
+            android:label="@string/title_activity_poop_edit" >
+        </activity>
     </application>
 
 </manifest>
