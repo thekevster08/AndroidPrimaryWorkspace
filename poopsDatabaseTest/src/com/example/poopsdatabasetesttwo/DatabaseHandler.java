@@ -89,4 +89,20 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		db.delete(TABLE_POOPS, null, null);
 	}
 	
+	public List<String> getAllDates(){
+		SQLiteDatabase db = this.getReadableDatabase();
+		
+		List<String> dates = new ArrayList<String>();
+	//	Cursor cursor = db.query(TABLE_POOPS,
+	//			new String[] {KEY_DURATION}, null, null, null, null, null); 
+		Cursor cursor = db.rawQuery(TABLE_POOPS, new String[] {KEY_DURATION});
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()){
+			String date = cursor.getString(1);
+			dates.add(date);
+			cursor.moveToNext();
+		}
+		cursor.close();
+		return dates;
+	}
 }
