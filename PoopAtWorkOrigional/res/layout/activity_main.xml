@@ -14,13 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"
-        android:text="POOPIN TIME" />
+        android:text="@string/logo_label" />
     
     <Button
         android:id="@+id/startButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="START POOPIN!"
+        android:text="@string/startButton_label"
         android:onClick="startClick"
         />
     
@@ -33,7 +33,7 @@
 	        android:layout_weight="1"
 	        android:layout_width="0dp"	  
 	        android:layout_height="wrap_content"	              
-	        android:text="TIME:" />
+	        android:text="@string/time_label" />
 	    
 	    <Chronometer
 	        android:id="@+id/chronometer"
@@ -56,14 +56,14 @@
 	        android:layout_weight="1"
 	        android:layout_width="0dp"	  
 	        android:layout_height="wrap_content"	              
-	        android:text="Earned:" />
+	        android:text="@string/earned_label" />
 		 
 	    <TextView
 	        android:id="@+id/amountEarned"
 	        android:layout_weight="1"
 	        android:layout_width="0dp"	  
 	        android:layout_height="wrap_content"	           
-	        android:text="---" />
+	        android:text="@string/initialValue" />
 
 	</LinearLayout>
 	
@@ -72,7 +72,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40dp"
-        android:text="All Done!" 
+        android:text="@string/finishedButton_label" 
         android:onClick="stopClick"/>
     
+    <LinearLayout 
+      android:layout_width="wrap_content"
+    	android:layout_height="wrap_content">
+    
+    <ListView android:id="@+id/android:list"
+          android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"/>
+  	<TextView android:id="@+id/android:empty"
+          android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:text="@string/no_poops"/>
+</LinearLayout>
+
 </LinearLayout>
