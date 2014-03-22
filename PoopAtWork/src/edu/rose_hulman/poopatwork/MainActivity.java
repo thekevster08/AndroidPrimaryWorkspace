@@ -6,10 +6,15 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,20 +24,24 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
-	Button startButton, stopButton;
+	Button mStartButton, mStopButton;
 	Chronometer mChronometer;
-	TextView amountEarned;
+	TextView mAmountEarnedText;
 	
 	SharedPreferences myPrefs;
 	SharedPreferences.Editor mEditor;
 	
 	double salary;
-	double earned;
 	double secondsElapsed;	
+	double amountEarned;
+	
+	String date;
 	
 	NumberFormat baseFormat;
 	
 	PoopDatabaseHandler db;
+	
+	Context context = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +50,20 @@ public class MainActivity extends Activity {
 		db = new PoopDatabaseHandler(this);
 		
 		mChronometer = (Chronometer) findViewById(R.id.chronometer);
-		startButton = (Button) findViewById(R.id.startButton);
-		stopButton = (Button) findViewById(R.id.stopButton);
+		mStartButton = (Button) findViewById(R.id.startButton);
+		mStopButton = (Button) findViewById(R.id.stopButton);
 		
-		startButton.setOnClickListener(mStartListener);
-		stopButton.setOnClickListener(mStopListener);
+		mStartButton.setOnClickListener(mStartListener);
+		mStopButton.setOnClickListener(mStopListener);
 		mChronometer.setOnChronometerTickListener(mChronometerTickListener);
 
-		amountEarned = (TextView) findViewById(R.id.amountEarned);
+		mAmountEarnedText = (TextView) findViewById(R.id.amountEarned);
 		
 		myPrefs = getSharedPreferences("myPrefs", 0);
 		//salary = myPrefs.getInt("salary", 0);
 		//TODO:return real salary
 		salary = 60000;
-		earned = 0;
+		amountEarned = 0;
 		secondsElapsed = 0;
 		
 		baseFormat = NumberFormat.getCurrencyInstance(Locale.US);
@@ -64,16 +73,80 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		getMenuInflater().inflate(R.menu.main_activity_actions, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 	
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+    	switch(item.getItemId()){
+    	case R.id.action_history:
+    		openHistory();
+    		return true;
+    	case R.id.action_settings:
+    		openSettings();
+    		return true;
+    	default:
+    		return super.onOptionsItemSelected(item);
+    	}
+    }
+    
+	private void openSettings() {
+		LayoutInflater layoutInflater = LayoutInflater.from(context);
+		View promptView = layoutInflater.inflate(R.layout.settings, null);
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+		alertDialogBuilder.setView(promptView);
 	
+		alertDialogBuilder
+			.setCancelable(false)
+			.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface dialog, int id){
+//					//editTextMainScreen.setText(input.getText());
+				}
+			})
+			.setNegativeButton("Cancel", 
+					new DialogInterface.OnClickListener(){
+						public void onClick(DialogInterface dialog, int id){
+							dialog.cancel();
+						}
+			});
+		AlertDialog alertD = alertDialogBuilder.create();
+		alertD.show();
+		
+	}
+
+	private void openHistory() {
+		LayoutInflater layoutInflater = LayoutInflater.from(context);
+		View promptView = layoutInflater.inflate(R.layout.history, null);
+		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+		alertDialogBuilder.setView(promptView);
+	
+		alertDialogBuilder
+			.setCancelable(false)
+			.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface dialog, int id){
+//					//editTextMainScreen.setText(input.getText());
+				}
+			})
+			.setNegativeButton("Cancel", 
+					new DialogInterface.OnClickListener(){
+						public void onClick(DialogInterface dialog, int id){
+							dialog.cancel();
+						}
+			});
+		AlertDialog alertD = alertDialogBuilder.create();
+		alertD.show();
+		
+	}
+
 	//Listeners
 	View.OnClickListener mStopListener = new OnClickListener(){
 		public void onClick (View v){
 			mChronometer.stop();
-			//TODO: createPoop();
+			date = getDateTime();
+		//	secondsElapsed = mChronometer.getText();			
+			Poop poop = new Poop(date, (int) secondsElapsed, (int) amountEarned);
+			db.addPoop(poop);
 		}
 	};
 
@@ -90,8 +163,8 @@ public class MainActivity extends Activity {
 		@Override
 		public void onChronometerTick(Chronometer mChronometer) {
 			secondsElapsed ++;
-			earned = (secondsElapsed * salary/(2080*60*60));
-			amountEarned.setText(baseFormat.format(earned));
+			amountEarned = (secondsElapsed * salary/(2080*60*60));
+			mAmountEarnedText.setText(baseFormat.format(amountEarned));
 		}
 	};
 	//Helper Methods
@@ -103,4 +176,7 @@ public class MainActivity extends Activity {
         return dateFormat.format(date);
 	}
 	
+	
+
+
 }

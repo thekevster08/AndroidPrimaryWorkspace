@@ -2,6 +2,7 @@ package edu.rose_hulman.poopatwork;
 
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -38,22 +39,32 @@ public class PoopDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	public void addPoop(Poop poop){
-		//TODO:
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		ContentValues values = new ContentValues();
+		values.put(KEY_DATE, poop.getDate());
+		values.put(KEY_DURATION, poop.getDuration());
+		values.put(KEY_AMOUNT_EARNED, poop.getAmountEarned());
+		
+		db.insert(TABLE_POOPS, null, values);
+		db.close();
+		
 	}
 	
-	public Poop getPoop(int id){
-		//TODO:
-	}
-	
-	public List<Poop> getAllPoops(){
-		//TODO:
-	}
-
-	public void deletePoop(int id){
-		//TODO:
-	}
-	
-	public List<String> getAllDates(){
-		//TODO:
-	}
+//	public Poop getPoop(int id){
+//		//TODO:
+//		
+//	}
+//	
+//	public List<Poop> getAllPoops(){
+//		//TODO:
+//	}
+//
+//	public void deletePoop(int id){
+//		//TODO:
+//	}
+//	
+//	public List<String> getAllDates(){
+//		//TODO:
+//	}
 }
