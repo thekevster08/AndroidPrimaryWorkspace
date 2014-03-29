@@ -6,6 +6,10 @@ public class Poop {
 	private int amountEarned; // in cents
 
 	//constructor
+	
+	public Poop(){
+		
+	}
 	public Poop(String date, int duration, int amountEarned) {
 		this.date = date;
 		this.duration = duration;
