@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Wages" >
+        <ListPreference
+            android:key="pref_type"
+            android:title="Wage Type "
+            android:summary="Hourly or Salary"
+            android:entries="@array/listentries"
+            android:entryValues="@array/listvalues" />
+        <EditTextPreference
+            android:key="pref_wage"
+            android:title="Wage"
+            android:summary="Dollar amount used to calculate earnings"/>
+    </PreferenceCategory>    
+</PreferenceScreen>
