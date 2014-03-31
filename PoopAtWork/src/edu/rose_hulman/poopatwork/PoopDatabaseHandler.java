@@ -32,7 +32,7 @@ public class PoopDatabaseHandler extends SQLiteOpenHelper{
 				+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ KEY_DATE + " TEXT, "
 				+ KEY_DURATION + " INTEGER, "
-				+ KEY_AMOUNT_EARNED + " INTEGER);";
+				+ KEY_AMOUNT_EARNED + " REAL);";
 		db.execSQL(CREATE_POOPS_TABLE);			
 	}
 
@@ -79,7 +79,7 @@ public class PoopDatabaseHandler extends SQLiteOpenHelper{
 		Poop poop = new Poop();
 		poop.setDate(cursor.getString(1));
 		poop.setDuration(cursor.getInt(2));
-		poop.setAmountEarned(cursor.getInt(3));
+		poop.setAmountEarned(cursor.getFloat(3));
 		return poop;
     }
 //
@@ -109,7 +109,7 @@ public class PoopDatabaseHandler extends SQLiteOpenHelper{
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
 			if (cursor.getString(0).equals(date)){
-				Poop poop = new Poop(cursor.getString(0), cursor.getInt(1), cursor.getInt(2));
+				Poop poop = new Poop(cursor.getString(0), cursor.getInt(1), cursor.getFloat(2));
 				cursor.close();
 				return poop;
 			}

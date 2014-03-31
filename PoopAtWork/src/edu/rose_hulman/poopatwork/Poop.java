@@ -3,14 +3,14 @@ package edu.rose_hulman.poopatwork;
 public class Poop {
 	private String date;
 	private int duration; //in seconds
-	private int amountEarned; // in cents
+	private float amountEarned; // in cents
 
 	//constructor
 	
 	public Poop(){
 		
 	}
-	public Poop(String date, int duration, int amountEarned) {
+	public Poop(String date, int duration, float amountEarned) {
 		this.date = date;
 		this.duration = duration;
 		this.amountEarned = amountEarned;
@@ -28,15 +28,15 @@ public class Poop {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public int getDuration(){
+	public float getDuration(){
 		return this.duration;
 	}
 	//AmountEarned
-	public void setAmountEarned(int amountEarned) {
+	public void setAmountEarned(float amountEarned) {
 		this.amountEarned = amountEarned;
 	}
 	
-	public int getAmountEarned() {
+	public float getAmountEarned() {
 		return amountEarned;
 	}	
 	/*To String*/
