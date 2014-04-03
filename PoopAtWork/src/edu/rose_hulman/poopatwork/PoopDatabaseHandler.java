@@ -82,11 +82,12 @@ public class PoopDatabaseHandler extends SQLiteOpenHelper{
 		poop.setAmountEarned(cursor.getFloat(3));
 		return poop;
     }
-//
-//	public void deletePoop(int id){
-//		//TODO:
-//	}
-//	
+	
+	public void deletePoop(String rowId) 
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+	    db.delete(TABLE_POOPS, KEY_ID + "=" + rowId, null);
+	}
 
 	public List<String> getAllPoopDates() {
 		SQLiteDatabase db = this.getReadableDatabase();
